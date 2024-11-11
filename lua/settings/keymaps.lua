@@ -9,15 +9,15 @@ vim.g.mapleader = " "
 -- clear search hightlight
 map('n', '<Space>n', ':noh<CR>', default_ops)
 
-vim.keymap.set({ 'n', 'v', 'i' }, '<C-s>', ':w<CR>', { noremap = true })
+vim.keymap.set({ 'n', 'v', 'i' }, '<C-s>', '<Cmd>w<CR>', { noremap = true })
 
---buffers
+-- buffers
 map('n', '.', ':bnext<CR>', { noremap = true })
 map('n', ',', ':bprevious<CR>', { noremap = true })
 
 vim.keymap.set('n', '<Leader>-', utils.delete_current_buff, default_ops)
 
---tabs
+-- tabs
 map('n', '[', '<Cmd>tabp<CR>', { noremap = true })
 map('n', ']', '<Cmd>tabn<CR>', { noremap = true })
 map('n', '_', '<Cmd>tabclose<CR>', { noremap = true })
