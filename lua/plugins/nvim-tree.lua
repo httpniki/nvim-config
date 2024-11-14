@@ -19,6 +19,12 @@ return {
          },
          update_focused_file = {
             enable = true
+         },
+         renderer = {
+            indent_width = 3,
+            indent_markers = {
+               enable = true,
+            }
          }
       })
 
