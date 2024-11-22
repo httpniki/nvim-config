@@ -76,7 +76,7 @@ return {
             },
          },
          defaults = {
-            file_ignore_patterns = hidden_files.HIDDEN_FILES,
+            file_ignore_patterns = { '.git', 'node_modules', '.cache', '.DS_Store', '.vscode', '.history', '__pycache__', 'dist', '.dist' },
             path_display = {
                "truncate"
             },
