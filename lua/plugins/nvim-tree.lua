@@ -1,3 +1,5 @@
+local hidden_files = { "node_modules", ".dist", "dist", ".git", "package-lock.json" }
+
 return {
    "nvim-tree/nvim-tree.lua",
    config = function()
@@ -8,7 +10,8 @@ return {
             width = 40,
          },
          filters = {
-            enable = false
+            enable = true,
+            custom = hidden_files,
          },
          live_filter = {
             always_show_folders = false
@@ -21,7 +24,7 @@ return {
             enable = true
          },
          renderer = {
-            indent_width = 3,
+            indent_width = 4,
             indent_markers = {
                enable = true,
             }
@@ -29,5 +32,6 @@ return {
       })
 
       vim.keymap.set('n', 'tt', ':NvimTreeFocus<CR>', {})
+      vim.keymap.set('n', 'tz', ':NvimTreeCollapse<CR>', {})
    end
 }
