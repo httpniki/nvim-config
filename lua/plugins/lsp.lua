@@ -45,6 +45,13 @@ return {
       map.set('n', '<Leader>,', vim.diagnostic.goto_prev)
       map.set('n', '<Leader>.', vim.diagnostic.goto_next)
       map.set('n', '<Leader>q', vim.diagnostic.setloclist)
+      vim.api.nvim_create_user_command(
+         'Format',
+         function()
+            vim.lsp.buf.format { async = true }
+         end,
+         {}
+      )
 
       vim.diagnostic.config({
          virtual_text = true,
@@ -112,9 +119,7 @@ return {
       lspconfig.html.setup({
          on_attach = on_attach,
          capabilities = capabilities,
-         provideFormatter = true,
-         cmd = { "vscode-html-language-server", "--stdio" },
-         filetypes = { "html", "templ" }
+         provideFormatter = true
       })
 
       lspconfig.cssls.setup({
@@ -128,8 +133,7 @@ return {
       lspconfig.angularls.setup({
          on_attach = on_attach,
          capabilities = capabilities,
-         cmd = { "ngserver", "--stdio", "--tsProbeLocations", "", "--ngProbeLocations", "" },
-         filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx" }
+         provideFormatter = true
       })
 
       lspconfig.jdtls.setup({
