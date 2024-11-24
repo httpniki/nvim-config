@@ -27,7 +27,8 @@ return {
             indent_width = 4,
             indent_markers = {
                enable = true,
-            }
+            },
+            group_empty = true
          }
       })
 
