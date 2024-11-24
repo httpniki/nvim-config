@@ -129,7 +129,16 @@ return {
          capabilities = capabilities,
          cmd = { "vscode-css-language-server", "--stdio" },
          filetypes = { "css", "scss", "less" },
-         init_options = { provideFormatter = true }
+         init_options = { provideFormatter = true },
+         settings = {
+            css = {
+               validate = true,
+               lint = {
+                  compatibleVendorPrefixes = "ignore",
+                  vendorPrefix = "ignore",
+               },
+            },
+         }
       })
 
       lspconfig.angularls.setup({
