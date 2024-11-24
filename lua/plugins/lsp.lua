@@ -169,6 +169,7 @@ return {
          on_attach = on_attach,
          capabilities = capabilities,
          cmd = { "/home/nicolas/lemminx-language-server/org.eclipse.lemminx/target/lemminx-linux-x86_64-0.28.1-SNAPSHOT" },
+         provideFormatter = true
       })
 
       lspconfig.bashls.setup({
