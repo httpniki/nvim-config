@@ -18,8 +18,8 @@ map('n', ',', ':bprevious<CR>', { noremap = true })
 vim.keymap.set('n', '<Leader>-', utils.delete_current_buff, default_ops)
 
 -- tabs
-map('n', '[', '<Cmd>tabp<CR>', { noremap = true })
-map('n', ']', '<Cmd>tabn<CR>', { noremap = true })
+map('n', 'tn', '<Cmd>tabp<CR>', { noremap = true })
+map('n', 'tp', '<Cmd>tabn<CR>', { noremap = true })
 map('n', '_', '<Cmd>tabclose<CR>', { noremap = true })
 
 -- resize windows
