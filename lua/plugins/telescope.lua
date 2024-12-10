@@ -60,13 +60,31 @@ return {
          end,
          desc = "Telescope Help Tags"
       },
-      --     {
-      --        "tt",
-      --        function()
-      --           require("telescope").extensions.file_browser.file_browser({ path = "%:h:p", select_buffer = true })
-      --        end,
-      --        desc = "Telescope file browser"
-      --     }
+      -- {
+      --    "tt",
+      --    function()
+      --       require("telescope").extensions.file_browser.file_browser({ path = "%:h:p", select_buffer = true })
+      --    end,
+      --    desc = "Telescope file browser"
+      -- }
+      {
+         "<leader>fp",
+         function()
+            require("telescope.builtin").find_files({
+               cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
+            })
+         end,
+         desc = "Vim lazy Packages"
+      },
+      {
+         "<Leader>fc",
+         function()
+            require("telescope.builtin").find_files({
+               cwd = vim.fn.stdpath("config")
+            })
+         end,
+         desc = "NVim config"
+      }
    },
    config = function()
       local opts = {
