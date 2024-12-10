@@ -7,7 +7,15 @@ return {
 
       client.setup({
          view = {
-            width = 40,
+            float = {
+               enable = true,
+               open_win_config = {
+                  width = 80,
+                  height = 30,
+                  row = 2,
+                  col = 50
+               }
+            }
          },
          filters = {
             enable = true,
