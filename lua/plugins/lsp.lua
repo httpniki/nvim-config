@@ -15,8 +15,9 @@ local on_attach = function(client, bufnr)
 
    if (client.name == 'jdtls') then
       client.server_capabilities.semanticTokensProvider = nil
-      vim.api.nvim_del_keymap('n', '<C-f>')
-      vim.api.nvim_del_keymap('i', '<C-f>')
+
+      -- vim.api.nvim_del_keymap('n', '<C-f>')
+      -- vim.api.nvim_del_keymap('i', '<C-f>')
    end
 
    if (client.name ~= 'jdtls') then
