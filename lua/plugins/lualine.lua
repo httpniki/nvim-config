@@ -1,14 +1,8 @@
-local bufnr = function()
-   local bufnr = vim.fn.bufnr()
-   return "<buff " .. bufnr .. ">"
-end
-
 return {
    'nvim-lualine/lualine.nvim',
    dependencies = {
       { 'kyazdani42/nvim-web-devicons' },
    },
-   enabled = true,
    config = function()
       local lualine = require('lualine')
 
@@ -20,11 +14,9 @@ return {
       local config = {
          options = {
             globalstatus = true,
-            -- component_separators = { left = '', right = '' },
             component_separators = {},
-            -- section_separators = { left = '', right = '' },
             section_separators = {},
-            theme = 'auto'
+            theme = '16color'
          },
          disabled_filetypes = {
             "packer",
@@ -33,21 +25,21 @@ return {
          },
          sections = {
             lualine_a = {},
-            lualine_b = { bufnr },
+            lualine_b = {},
             lualine_c = {
                { "filename", path = 1 },
                {
                   'diagnostics',
                   sections = { 'error', 'warn', 'info' },
                   symbols = { error = ' ', warn = ' ', info = ' ' },
-               }
+               },
             },
             lualine_x = {
                'diff',
-               'filetype'
+               'location',
             },
-            lualine_y = { 'branch' },
-            lualine_z = { "location" },
+            lualine_y = {},
+            lualine_z = {},
          },
          inactive_sections = {
             lualine_a = {},

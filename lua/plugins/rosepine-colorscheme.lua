@@ -1,5 +1,8 @@
 return {
    "rose-pine/neovim",
    name = "rose-pine",
-   enabled = true
+   enabled = false,
+   opts = {
+      disable_background = false,
+   }
 }

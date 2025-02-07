@@ -7,5 +7,6 @@ return {
          bg = "",
          fg = "#6d6d6d",
       }
-   }
+   },
+   enabled = false
 }

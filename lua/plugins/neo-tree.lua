@@ -2,13 +2,13 @@ local hidden_files = require('lib.hidden-files')
 
 return {
    "nvim-neo-tree/neo-tree.nvim",
+   enabled=false,
    dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
       "3rd/image.nvim",
    },
-   enabled = false,
    keys = {
       {
          'tt',
@@ -102,7 +102,7 @@ return {
          },
          window = {
             hidden = true,
-            position = "right",
+            -- position = "right",
             width = 40,
             mapping_options = {
                noremap = true,

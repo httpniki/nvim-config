@@ -10,7 +10,6 @@ return {
          build = 'make'
       }
    },
-   event = 'VeryLazy',
    keys = {
       {
          "ff",
@@ -23,13 +22,6 @@ return {
          end,
          desc = 'Telescope find files'
       },
-      -- {
-      --    "fb",
-      --    function()
-      --       require('telescope.builtin').buffers()
-      --    end,
-      --    desc = 'Telescope buffers'
-      -- },
       {
          "fw",
          function()

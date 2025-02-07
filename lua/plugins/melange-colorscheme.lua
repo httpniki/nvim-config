@@ -1,4 +1,4 @@
 return {
    "savq/melange-nvim",
-   enabled = true
+   enabled = false
 }

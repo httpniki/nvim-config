@@ -4,6 +4,7 @@ return {
       "anuvyklack/middleclass",
    },
    enabled = true,
+   event = "WinEnter",
    config = function()
       vim.o.winwidth = 1
       vim.o.winminwidth = 1

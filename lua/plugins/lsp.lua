@@ -9,16 +9,10 @@ local function format_buf()
    end
 end
 
-
 local on_attach = function(client, bufnr)
    local opts = { buffer = bufnr }
 
-   if (client.name == 'jdtls') then
-      client.server_capabilities.semanticTokensProvider = nil
-
-      -- vim.api.nvim_del_keymap('n', '<C-f>')
-      -- vim.api.nvim_del_keymap('i', '<C-f>')
-   end
+   client.server_capabilities.semanticTokensProvider = nil
 
    if (client.name ~= 'jdtls') then
       map.set('n', '<C-f>', format_buf, opts)
@@ -105,18 +99,16 @@ return {
 
       lspconfig.ts_ls.setup({
          on_attach = on_attach,
-         filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "javascript.jsx", "typescript.tsx" },
          cmd = { "typescript-language-server", "--stdio" },
-         capabilities = capabilities
+         capabilities = capabilities,
       })
 
       lspconfig.eslint.setup({
-         on_attach = on_attach
+         on_attach = on_attach,
       })
 
       lspconfig.tailwindcss.setup({
          on_attach = on_attach,
-         filetypes = { "javascriptreact", 'typescriptreact' }
       })
 
       lspconfig.html.setup({
@@ -129,7 +121,6 @@ return {
          on_attach = on_attach,
          capabilities = capabilities,
          cmd = { "vscode-css-language-server", "--stdio" },
-         filetypes = { "css", "scss", "less" },
          init_options = { provideFormatter = true },
          settings = {
             css = {
@@ -157,7 +148,6 @@ return {
          on_attach = on_attach,
          capabilities = capabilities,
          cmd = { "vscode-json-language-server", "--stdio" },
-         filetypes = { "json", "jsonc" },
          provideFormatter = true
       })
 
@@ -174,6 +164,11 @@ return {
       })
 
       lspconfig.bashls.setup({
+         on_attach = on_attach,
+         capabilities = capabilities,
+      })
+
+      lspconfig.astro.setup({
          on_attach = on_attach,
          capabilities = capabilities,
       })

@@ -2,6 +2,9 @@ local hidden_files = { "node_modules", ".dist", "dist", ".git", "package-lock.js
 
 return {
    "nvim-tree/nvim-tree.lua",
+   keys = {
+      {'tt', "<cmd>NvimTreeFocus<CR>"},
+   },
    config = function()
       local client = require("nvim-tree")
 
@@ -40,7 +43,6 @@ return {
          }
       })
 
-      vim.keymap.set('n', 'tt', ':NvimTreeFocus<CR>', {})
       vim.keymap.set('n', 'tz', ':NvimTreeCollapse<CR>', {})
    end
 }

@@ -1,3 +1,4 @@
 return {
-   "xero/miasma.nvim"
+   "xero/miasma.nvim",
+   enabled = false
 }

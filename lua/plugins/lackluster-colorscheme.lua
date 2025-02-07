@@ -1,3 +1,4 @@
 return {
-   "slugbyte/lackluster.nvim"
+   "slugbyte/lackluster.nvim",
+   enabled = false
 }
