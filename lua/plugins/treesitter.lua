@@ -4,9 +4,9 @@ return {
    main = "nvim-treesitter.configs",
    event = 'VeryLazy',
    opts = {
-      ensure_installed = { "lua", "vim", "vimdoc", "javascript", "typescript", "tsx", "java", "angular", "rust", "bash", "astro" },
+      ensure_installed = { "lua", "vim", "vimdoc", "javascript", "typescript", "tsx", "java", "angular", "rust", "bash", "astro", "python" },
       highlight = {
-         enable = true
+         enable = false
       },
    },
 }

@@ -2,7 +2,7 @@ return {
    "ellisonleao/gruvbox.nvim",
    lazy = false,
    priority = 1000,
-   enabled = true,
+   enabled = false,
    config = function()
       require('gruvbox').setup({
          undercurl = true,
@@ -22,9 +22,8 @@ return {
          inverse = true,
          contrast = "soft", --  "hard", "soft"
          palette_overrides = {},
-         overrides = {},
          dim_inactive = false,
-         transparent_mode = true
+         transparent_mode = true,
       })
    end
 }

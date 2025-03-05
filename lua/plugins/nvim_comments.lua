@@ -1,5 +1,9 @@
 return {
    'terrortylor/nvim-comment',
+   keys = {
+      { "gcc", ":CommentToggle<CR>" },
+      { "gc", ":CommentToggle<CR>" },
+   },
    event = "BufEnter",
    config = function()
       require('nvim_comment').setup({
