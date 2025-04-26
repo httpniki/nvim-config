@@ -18,6 +18,7 @@ return {
                grep_open_files = true,
                previewer = false,
                hidden = true,
+               no_ignore = true
             })
          end,
          desc = 'Telescope find files'
@@ -86,7 +87,7 @@ return {
             },
          },
          defaults = {
-            file_ignore_patterns = { '.git', 'node_modules', '.cache', '.DS_Store', '.vscode', '.history', '__pycache__', 'dist', '.dist' },
+            file_ignore_patterns = { '.git', 'node_modules', '.cache', '.DS_Store', '.vscode', '.history', '__pycache__', 'dist', '.dist', '.webp', '.settings/', 'target/' },
             path_display = {
                "truncate"
             },

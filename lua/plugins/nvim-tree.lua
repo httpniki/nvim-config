@@ -1,9 +1,9 @@
-local hidden_files = { "node_modules", ".dist", "dist", ".git", "package-lock.json" }
+local hidden_files = { "node_modules", ".dist", "dist", ".git", "package-lock.json", "target" }
 
 return {
    "nvim-tree/nvim-tree.lua",
    keys = {
-      {'tt', "<cmd>NvimTreeFocus<CR>"},
+      { 'tt', "<cmd>NvimTreeFocus<CR>" },
    },
    config = function()
       local client = require("nvim-tree")
@@ -23,6 +23,8 @@ return {
          filters = {
             enable = true,
             custom = hidden_files,
+            dotfiles = false,
+            git_ignored = false
          },
          live_filter = {
             always_show_folders = false

@@ -142,6 +142,8 @@ return {
       lspconfig.jdtls.setup({
          on_attach = on_attach,
          capabilities = capabilities,
+         cmd = { "/home/nicolas/.local/share/nvim/mason/bin/jdtls" },
+         root_dir = vim.fn.getcwd(),
       })
 
       lspconfig.jsonls.setup({
