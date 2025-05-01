@@ -3,9 +3,12 @@ require('settings/keymaps')
 -- require('settings/syntax')
 require('settings/lazy')
 
-vim.cmd[[colorscheme gruvbox]]
+vim.cmd [[colorscheme gruvbox]]
 
 vim.api.nvim_create_user_command("HighlightGroupName", function ()
    local name = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1)), 'name')
    print(name)
 end,{})
+
+vim.cmd([[set colorcolumn=85]])
+vim.cmd([[hi CursorLine guibg=#303030]])

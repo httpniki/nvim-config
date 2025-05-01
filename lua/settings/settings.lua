@@ -46,20 +46,16 @@ opt.smartindent = true
 opt.tabstop = 3
 opt.softtabstop = 3
 
-local has = function(x)
-   return vim.fn.has(x) == 1
+if vim.fn.has("macunix") == 1 then
+   vim.opt.clipboard:append { 'unnamedplus' }
 end
 
-if has "macunix" then
-   require("settings/macos")
+if vim.fn.has("win32") == 1 then
+   vim.opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
 end
 
-if has "win32" then
-   require("settings/windows")
-end
-
-if has "linux" then
-   require("settings/linux")
+if vim.fn.has("linux") then
+   vim.opt.clipboard:append { 'unnamedplus' }
 end
 
 vim.diagnostic.config({ signs = false })
