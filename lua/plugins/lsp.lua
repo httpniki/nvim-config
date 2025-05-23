@@ -179,5 +179,10 @@ return {
          on_attach = on_attach,
          capabilities = capabilities,
       })
+
+      lspconfig.sourcekit.setup({
+         on_attach = on_attach,
+         capabilities = capabilities,
+      })
    end
 }
