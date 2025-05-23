@@ -17,7 +17,6 @@ return {
       },
       {
          "<leader>hn",
-         -- "<Leader><Right>",
          function()
             require("harpoon.ui").nav_next()
          end,
@@ -25,7 +24,6 @@ return {
       },
       {
          "<leader>hp",
-         -- "<Leader><Left>",
          function()
             require("harpoon.ui").nav_prev()
          end,
