@@ -142,7 +142,10 @@ return {
       lspconfig.jdtls.setup({
          on_attach = on_attach,
          capabilities = capabilities,
-         cmd = { "/home/nicolas/.local/share/nvim/mason/bin/jdtls" },
+         cmd = {
+            "/home/nicolas/.local/share/nvim/mason/bin/jdtls",
+            "--jvm-arg=-javaagent:/home/nicolas/.m2/repository/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar"
+         },
          root_dir = vim.fn.getcwd(),
       })
 
