@@ -15,7 +15,6 @@ return {
                grep_open_files = true,
                previewer = false,
                hidden = true,
-               no_ignore = true
             })
          end,
          desc = 'Find Files'
@@ -80,11 +79,14 @@ return {
                '.vscode',
                '.history',
                '__pycache__',
-               'dist',
-               '.dist',
+               'dist/*',
+               '.dist/*',
                '.webp',
                '.settings/',
-               'target/'
+               'target/',
+               'build/*',
+               '.idea/*',
+               '.gradle/*'
             },
             path_display = {
                "truncate"

@@ -32,6 +32,16 @@ opt.conceallevel = 0
 opt.wrap = false
 opt.termguicolors = true
 opt.linespace = 0
+opt.fillchars = {
+  vert = ' ',
+  horiz = ' ',
+  horizup = ' ',
+  horizdown = ' ',
+  vertleft = ' ',
+  vertright = ' ',
+  verthoriz = ' ',
+  eob = ' '
+}
 
 --opt.textwidth = 900
 --opt.linespace = 5
@@ -59,3 +69,4 @@ if vim.fn.has("linux") then
 end
 
 vim.diagnostic.config({ signs = false })
+vim.g.auto_reload_config_silent = true

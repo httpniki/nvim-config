@@ -26,6 +26,7 @@ return {
          "xml",
          "html",
          "json",
+         "kotlin"
       },
       highlight = {
          enable = true

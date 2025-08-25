@@ -3,7 +3,7 @@ return {
    dependencies = {
       "anuvyklack/middleclass",
    },
-   enabled = true,
+   enabled = false,
    event = "WinEnter",
    config = function()
       vim.o.winwidth = 1

@@ -20,10 +20,10 @@ return {
          invert_tabline = false,
          invert_intend_guides = false,
          inverse = true,
-         contrast = "soft", --  "hard", "soft"
+         contrast = "hard", --  "hard", "soft"
          palette_overrides = {},
          dim_inactive = false,
-         transparent_mode = true,
+         transparent_mode = false,
       })
    end
 }

@@ -5,6 +5,9 @@ return {
    },
    config = function()
       local lualine = require('lualine')
+      local custom_theme = require('lualine.themes.16color')
+
+      custom_theme.normal.c.bg = 'None'
 
       require('lualine').hide({
          place = { 'statusline', 'tabline', 'winbar', 'neo-tree', 'filesystem' },
@@ -16,7 +19,7 @@ return {
             globalstatus = true,
             component_separators = {},
             section_separators = {},
-            theme = '16color'
+            theme = custom_theme
          },
          disabled_filetypes = {
             "packer",

@@ -10,8 +10,10 @@ return {
 
       client.setup({
          view = {
+            side = "right",
+            width = 38,
             float = {
-               enable = true,
+               enable = false,
                open_win_config = {
                   width = 80,
                   height = 30,
@@ -19,6 +21,7 @@ return {
                   col = 50
                }
             }
+
          },
          filters = {
             enable = true,
@@ -41,7 +44,12 @@ return {
             indent_markers = {
                enable = true,
             },
-            group_empty = true
+            group_empty = true,
+            root_folder_label = function (path)
+               local root_name = vim.fn.fnamemodify(path, ":t")
+
+               return root_name
+            end
          }
       })
 

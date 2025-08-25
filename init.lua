@@ -1,14 +1,17 @@
 require('settings/settings')
 require('settings/keymaps')
--- require('settings/syntax')
 require('settings/lazy')
+-- require('settings/syntax')
 
+vim.o.background = "dark"
 vim.cmd [[colorscheme gruvbox]]
 
-vim.api.nvim_create_user_command("HighlightGroupName", function ()
-   local name = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1)), 'name')
-   print(name)
-end,{})
+if vim.o.background == "dark" then
+   vim.cmd([[hi CursorLine guibg=#303030]])
+end
+
+-- vim.cmd [[colorscheme rose-pine]]
+-- vim.cmd([[hi Normal guibg=NONE ctermbg=NONE]])
 
 vim.cmd([[set colorcolumn=85]])
-vim.cmd([[hi CursorLine guibg=#303030]])
+

@@ -12,7 +12,11 @@ end
 local on_attach = function(client, bufnr)
    local opts = { buffer = bufnr }
 
-   client.server_capabilities.semanticTokensProvider = nil
+   -- if (client.server_capabilities.semanticTokensProvider) then
+      client.server_capabilities.semanticTokensProvider = nil
+      -- vim.lsp.handlers['textDocument/semanticTokens/full'] = nil
+      -- vim.lsp.handlers['textDocument/semanticTokens/range'] = nil
+   -- end
 
    if (client.name ~= 'jdtls') then
       map.set('n', '<C-f>', format_buf, opts)
@@ -29,9 +33,11 @@ end
 
 return {
    "neovim/nvim-lspconfig",
+   enabled = true,
    dependencies = {
       "williamboman/mason.nvim",
-      "folke/neodev.nvim"
+      "folke/neodev.nvim",
+      'saghen/blink.cmp'
    },
    config = function()
       local lspconfig = require("lspconfig")
@@ -42,6 +48,7 @@ return {
       map.set('n', '<Leader>,', vim.diagnostic.goto_prev)
       map.set('n', '<Leader>.', vim.diagnostic.goto_next)
       map.set('n', '<Leader>q', vim.diagnostic.setloclist)
+
       vim.api.nvim_create_user_command(
          'Format',
          function()
@@ -83,11 +90,14 @@ return {
          underline = true,
       })
 
-      --Enable (broadcasting) snippet capability for completion
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities.textDocument.completion.completionItem.snippetSupport = true
+      -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+      -- capabilities.textDocument.completion.completionItem.snippetSupport = true
+          -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
+
 
       lspconfig.lua_ls.setup({
+         capabilities = capabilities,
          on_attach = on_attach,
          settings = {
             Lua = {
@@ -142,6 +152,7 @@ return {
       lspconfig.jdtls.setup({
          on_attach = on_attach,
          capabilities = capabilities,
+         filetypes = { "java" },
          cmd = {
             "/home/nicolas/.local/share/nvim/mason/bin/jdtls",
             "--jvm-arg=-javaagent:/home/nicolas/.m2/repository/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar"
@@ -185,7 +196,25 @@ return {
 
       lspconfig.sourcekit.setup({
          on_attach = on_attach,
-         capabilities = capabilities,
+         capabilities = capabilities
       })
+
+      lspconfig.clangd.setup({
+         on_attach = on_attach,
+         capabilities = capabilities
+      })
+
+      lspconfig.kotlin_language_server.setup({
+         on_attach = on_attach,
+         capabilities = capabilities
+      })
+      
+      -- lspconfig.kotlin_lsp.setup({
+      --    on_attach = on_attach,
+      --    capabilities = capabilities,
+      --    cmd = { "kotlin-lsp", "--stdio" },
+      --    filetypes = { "kotlin" },
+      --    root_markers = { "settings.gradle", "settings.gradle.kts", "pom.xml", "build.gradle", "build.gradle.kts", "workspace.json" }
+      -- })
    end
 }
