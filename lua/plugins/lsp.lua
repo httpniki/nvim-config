@@ -12,11 +12,9 @@ end
 local on_attach = function(client, bufnr)
    local opts = { buffer = bufnr }
 
-   -- if (client.server_capabilities.semanticTokensProvider) then
-      client.server_capabilities.semanticTokensProvider = nil
-      -- vim.lsp.handlers['textDocument/semanticTokens/full'] = nil
-      -- vim.lsp.handlers['textDocument/semanticTokens/range'] = nil
-   -- end
+   client.server_capabilities.semanticTokensProvider = nil
+   vim.lsp.handlers['textDocument/semanticTokens/full'] = nil
+   vim.lsp.handlers['textDocument/semanticTokens/range'] = nil
 
    if (client.name ~= 'jdtls') then
       map.set('n', '<C-f>', format_buf, opts)
@@ -41,6 +39,7 @@ return {
    },
    config = function()
       local lspconfig = require("lspconfig")
+      local utils = require("lspconfig.util")
       require("neodev").setup()
 
       map.set('n', 'K', vim.lsp.buf.hover)
@@ -58,7 +57,7 @@ return {
       )
 
       vim.diagnostic.config({
-         virtual_text = true,
+         virtual_text = false,
          signs = {
             enable = true,
             text = {
@@ -92,64 +91,76 @@ return {
 
       -- local capabilities = vim.lsp.protocol.make_client_capabilities()
       -- capabilities.textDocument.completion.completionItem.snippetSupport = true
-          -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
+      vim.lsp.config('*', {
+         on_attach = on_attach,
+         capabilities = capabilities,
+      })
 
-      lspconfig.lua_ls.setup({
+      vim.lsp.enable('lua_ls')
+      vim.lsp.config('lua_ls', {
          capabilities = capabilities,
          on_attach = on_attach,
          settings = {
             Lua = {
                telemetry = { enable = false },
-               workspace = { checkThirdParty = false }
+               workspace = { checkThirdParty = false },
+               diagnostics = { globals = { "vim" } }
             }
          }
       })
 
-      lspconfig.ts_ls.setup({
+      vim.lsp.enable('ts_ls')
+      vim.lsp.config('ts_ls', {
          on_attach = on_attach,
          cmd = { "typescript-language-server", "--stdio" },
          capabilities = capabilities,
-      })
-
-      lspconfig.eslint.setup({
-         on_attach = on_attach,
-      })
-
-      lspconfig.tailwindcss.setup({
-         on_attach = on_attach,
-      })
-
-      lspconfig.html.setup({
-         on_attach = on_attach,
-         capabilities = capabilities,
          provideFormatter = true
       })
 
-      lspconfig.cssls.setup({
+      vim.lsp.enable('tailwindcss')
+      vim.lsp.enable('eslint')
+      vim.lsp.config('eslint', {
          on_attach = on_attach,
          capabilities = capabilities,
-         cmd = { "vscode-css-language-server", "--stdio" },
-         init_options = { provideFormatter = true },
-         settings = {
-            css = {
-               validate = true,
-               lint = {
-                  compatibleVendorPrefixes = "ignore",
-                  vendorPrefix = "ignore",
-               },
-            },
-         }
+         provideFormatter = false
       })
 
-      lspconfig.angularls.setup({
-         on_attach = on_attach,
-         capabilities = capabilities,
-         provideFormatter = true
-      })
+      vim.lsp.enable('html')
+      vim.lsp.enable('cssls')
+      --
+      -- lspconfig.html.setup({
+      --    on_attach = on_attach,
+      --    capabilities = capabilities,
+      --    provideFormatter = true
+      -- })
 
-      lspconfig.jdtls.setup({
+      -- lspconfig.cssls.setup({
+      --    on_attach = on_attach,
+      --    capabilities = capabilities,
+      --    cmd = { "vscode-css-language-server", "--stdio" },
+      --    init_options = { provideFormatter = true },
+      --    settings = {
+      --       css = {
+      --          validate = true,
+      --          lint = {
+      --             compatibleVendorPrefixes = "ignore",
+      --             vendorPrefix = "ignore",
+      --          },
+      --       },
+      --    }
+      -- })
+
+      -- vim.lsp.enable('angularls')
+      -- vim.lsp.config('angularls', {
+      --    on_attach = on_attach,
+      --    capabilities = capabilities,
+      --    provideFormatter = true
+      -- })
+
+      vim.lsp.enable('jdtls')
+      vim.lsp.config('jdtls', {
          on_attach = on_attach,
          capabilities = capabilities,
          filetypes = { "java" },
@@ -157,64 +168,73 @@ return {
             "/home/nicolas/.local/share/nvim/mason/bin/jdtls",
             "--jvm-arg=-javaagent:/home/nicolas/.m2/repository/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar"
          },
-         root_dir = vim.fn.getcwd(),
+         root_dir = vim.fn.getcwd()
       })
 
-      lspconfig.jsonls.setup({
+      vim.lsp.enable('jsonls')
+      vim.lsp.config('jsonls', {
          on_attach = on_attach,
          capabilities = capabilities,
          cmd = { "vscode-json-language-server", "--stdio" },
          provideFormatter = true
       })
 
-      lspconfig.rust_analyzer.setup({
-         on_attach = on_attach,
-         capabilities = capabilities
-      })
+      -- lspconfig.rust_analyzer.setup({
+      --    on_attach = on_attach,
+      --    capabilities = capabilities
+      -- })
 
-      lspconfig.lemminx.setup({
-         on_attach = on_attach,
-         capabilities = capabilities,
-         cmd = { "/home/nicolas/lemminx-language-server/org.eclipse.lemminx/target/lemminx-linux-x86_64-0.28.1-SNAPSHOT" },
-         provideFormatter = true
-      })
-
-      lspconfig.bashls.setup({
-         on_attach = on_attach,
-         capabilities = capabilities,
-      })
-
-      lspconfig.astro.setup({
-         on_attach = on_attach,
-         capabilities = capabilities,
-      })
-
-      lspconfig.pyright.setup({
-         on_attach = on_attach,
-         capabilities = capabilities,
-      })
-
-      lspconfig.sourcekit.setup({
-         on_attach = on_attach,
-         capabilities = capabilities
-      })
-
-      lspconfig.clangd.setup({
-         on_attach = on_attach,
-         capabilities = capabilities
-      })
-
-      lspconfig.kotlin_language_server.setup({
-         on_attach = on_attach,
-         capabilities = capabilities
-      })
-      
-      -- lspconfig.kotlin_lsp.setup({
+      -- lspconfig.lemminx.setup({
       --    on_attach = on_attach,
       --    capabilities = capabilities,
-      --    cmd = { "kotlin-lsp", "--stdio" },
-      --    filetypes = { "kotlin" },
-      --    root_markers = { "settings.gradle", "settings.gradle.kts", "pom.xml", "build.gradle", "build.gradle.kts", "workspace.json" }
+      --    cmd = { "/home/nicolas/lemminx-language-server/org.eclipse.lemminx/target/lemminx-linux-x86_64-0.28.1-SNAPSHOT" },
+      --    provideFormatter = true
       -- })
+
+      -- lspconfig.bashls.setup({
+      --    on_attach = on_attach,
+      --    capabilities = capabilities,
+      -- })
+
+      -- lspconfig.astro.setup({
+      --    on_attach = on_attach,
+      --    capabilities = capabilities,
+      -- })
+
+      -- lspconfig.pyright.setup({
+      --    on_attach = on_attach,
+      --    capabilities = capabilities,
+      -- })
+
+      -- lspconfig.sourcekit.setup({
+      --    on_attach = on_attach,
+      --    capabilities = capabilities
+      -- })
+
+      -- lspconfig.clangd.setup({
+      --    on_attach = on_attach,
+      --    capabilities = capabilities
+      -- })
+      --
+      vim.lsp.enable('kotlin_language_server')
+      vim.lsp.config('kotlin_language_server', {
+         cmd = { 'kotlin-language-server' },
+         filetypes = { 'kotlin' }
+      })
+
+      vim.lsp.enable('omnisharp')
+      vim.lsp.config('omnisharp', {
+         filetypes = { 'cs' }
+      })
+
+      -- vim.lsp.enable('kotlin_lsp')
+      -- vim.lsp.config('kotlin_lsp', {
+      --    cmd = {"kotlin-lsp", "--stdio"},
+      --    filetypes = { 'kotlin' },
+      --    root_dir = utils.root_pattern("settings.gradle", "settings.gradle.kts", "build.gradle", "build.gradle.kts", "pom.xml", ".git")
+      -- --    on_attach = on_attach,
+      -- --    capabilities = capabilities,
+      -- })
+
    end
 }
