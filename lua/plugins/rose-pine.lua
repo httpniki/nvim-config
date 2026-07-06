@@ -4,7 +4,7 @@ return {
    name = "rose-pine",
    config = {
       styles = {
-         transparency = true
+         transparency = false
       }
    }
 }

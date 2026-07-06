@@ -13,7 +13,7 @@ return {
          function()
             require('telescope.builtin').find_files({
                grep_open_files = true,
-               previewer = false,
+               -- previewer = false,
                hidden = true,
             })
          end,
@@ -66,6 +66,12 @@ return {
             })
          end,
          desc = "Nvim config"
+      },
+      {
+         "<Leader>fe",
+         function()
+            require('telescope.builtin').diagnostics({})
+         end
       }
    },
    config = function()
@@ -82,7 +88,6 @@ return {
                'dist/*',
                '.dist/*',
                '.webp',
-               '.settings/',
                'target/',
                'build/*',
                '.idea/*',

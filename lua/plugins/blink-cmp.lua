@@ -1,5 +1,6 @@
 return {
    'saghen/blink.cmp',
+   enabled = true,
    -- dependencies = { 'rafamadriz/friendly-snippets' },
    version = '1.*',
    opts = {
@@ -11,7 +12,7 @@ return {
          ghost_text = { enabled = false },
          documentation = { auto_show = true },
          menu = {
-            auto_show = true,
+            auto_show = false,
             draw = {
                columns = {
                   { "label", "label_description", "kind", gap = 1 }
@@ -21,6 +22,6 @@ return {
       },
       cmdline = { enabled = true },
       fuzzy = { implementation = "prefer_rust_with_warning" },
-      signature = { enabled = true },
+      signature = { enabled = false },
    }
 }

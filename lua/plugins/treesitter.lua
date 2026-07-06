@@ -2,6 +2,7 @@ return {
    'nvim-treesitter/nvim-treesitter',
    build = ':TSUpdate',
    main = "nvim-treesitter.configs",
+   enabled = true,
    event = 'VeryLazy',
    opts = {
       ensure_installed = {

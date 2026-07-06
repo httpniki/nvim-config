@@ -8,29 +8,29 @@ return {
    config = function()
       local client = require("nvim-tree")
 
+      --type client.config
       client.setup({
          view = {
             side = "right",
-            width = 38,
+            width = 46,
             float = {
                enable = false,
                open_win_config = {
-                  width = 80,
-                  height = 30,
+                  width = 100,
+                  height = 40,
                   row = 2,
-                  col = 50
+                  col = 70
                }
             }
-
          },
          filters = {
-            enable = true,
+            enable = false,
             custom = hidden_files,
             dotfiles = false,
             git_ignored = false
          },
          live_filter = {
-            always_show_folders = false
+            always_show_folders = true
          },
          hijack_directories = {
             enable = false,

@@ -29,6 +29,9 @@ function M.setup()
          { name = "path" },
          { name = "luasnip" },
          { name = "buffer" },
+      },
+      completion = {
+         autocomplete = false
       }
    })
 
