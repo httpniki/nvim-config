@@ -1,6 +1,14 @@
 local map = vim.keymap
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 
+vim.filetype.add({
+   extension = {
+      mcfunction = 'mcfunction',
+      mcdoc = 'mcdoc',
+      snbt = 'snbt',
+   },
+})
+
 local function format_buf()
    if vim.fn.exists(':EslintFixAll') > 0 then
       vim.cmd('EslintFixAll')
@@ -179,6 +187,15 @@ return {
          provideFormatter = true
       })
 
+      vim.lsp.config('spyglassmc', {
+         cmd = { 'spyglassmc-language-server', '--stdio' },
+         filetypes = { 'mcfunction', 'mcdoc', 'snbt', 'json' },
+         root_markers = { 'pack.mcmeta' },
+         capabilities = capabilities,
+         on_attach = on_attach,
+      })
+      vim.lsp.enable('spyglassmc')
+
       -- lspconfig.rust_analyzer.setup({
       --    on_attach = on_attach,
       --    capabilities = capabilities
@@ -235,6 +252,5 @@ return {
       -- --    on_attach = on_attach,
       -- --    capabilities = capabilities,
       -- })
-
    end
 }
