@@ -5,7 +5,7 @@ return {
       {
          'nvim-telescope/telescope-fzf-native.nvim',
          build = 'make'
-      }
+      },
    },
    keys = {
       {
@@ -73,6 +73,13 @@ return {
             require('telescope.builtin').diagnostics({})
          end
       }
+      -- {
+      --    "fb",
+      --    function()
+      --       require("telescope.builtin").buffers()
+      --    end,
+      --    desc = "Buffers"
+      -- }
    },
    config = function()
       local opts = {
@@ -110,7 +117,6 @@ return {
             },
          },
       }
-
       require("telescope").load_extension("fzf")
       require("telescope").setup(opts)
    end

@@ -2,24 +2,35 @@ local hidden_files = { "node_modules", ".dist", "dist", ".git", "package-lock.js
 
 return {
    "nvim-tree/nvim-tree.lua",
+   enabled = true,
    keys = {
       { 'tt', "<cmd>NvimTreeFocus<CR>" },
    },
    config = function()
       local client = require("nvim-tree")
+      vim.opt.termguicolors = true
 
-      --type client.config
+      local gheight = vim.api.nvim_list_uis()[1].height
+      local gwidth = vim.api.nvim_list_uis()[1].width
+      local width = 80
+      local height = 28
+
       client.setup({
          view = {
-            side = "right",
+            side = "left",
             width = 46,
+            centralize_selection = true,
+            cursorline = true,
             float = {
                enable = false,
                open_win_config = {
-                  width = 100,
-                  height = 40,
-                  row = 2,
-                  col = 70
+                  relative = "editor",
+                  border = { "╔", "═" ,"╗", "║", "╝", "═", "╚", "║" },
+                  style = "minimal",
+                  width = width,
+                  height = height,
+                  row = (gheight - height) * 0.5,
+                  col = (gwidth - width) * 0.5
                }
             }
          },
@@ -40,16 +51,16 @@ return {
             enable = true
          },
          renderer = {
-            indent_width = 4,
+            indent_width = 5,
             indent_markers = {
                enable = true,
             },
             group_empty = true,
-            root_folder_label = function (path)
-               local root_name = vim.fn.fnamemodify(path, ":t")
+            -- root_folder_label = function(path)
+            --    local root_name = vim.fn.fnamemodify(path, ":t")
 
-               return root_name
-            end
+            --    return root_name
+            -- end
          }
       })
 

@@ -244,6 +244,13 @@ return {
          filetypes = { 'cs' }
       })
 
+      vim.lsp.enable('postgres_lsp')
+      vim.lsp.config('postgres_lsp', {
+         filetypes = { 'sql' },
+         cmd = { "postgres-language-server", "lsp-proxy" },
+         workspace_required = false
+      })
+
       -- vim.lsp.enable('kotlin_lsp')
       -- vim.lsp.config('kotlin_lsp', {
       --    cmd = {"kotlin-lsp", "--stdio"},
